@@ -1,3 +1,5 @@
+#!/usr/bin/python2
+
 import paho.mqtt.client as mqtt
 import matplotlib.pyplot as plt
 import matplotlib as mtp
@@ -116,7 +118,7 @@ def on_message(client, userdata, msg):
     #print "on message"
     print(msg.topic+" "+str(msg.payload))
     if msg.topic == "/sdr/signalStrengthPosition":
-        # print "got robot position"
+        print "got robot position"
         robo_x = round(json.loads(msg.payload)['x']/1000, 2)
         robo_y = round(json.loads(msg.payload)['y']/1000, 2)
         # print('RX: ',robo_x,'RY: ',robo_y)
