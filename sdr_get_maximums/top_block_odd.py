@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block Odd
-# Generated: Wed Jul 25 17:04:54 2018
+# Generated: Thu Jul 26 13:47:21 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -72,7 +72,7 @@ class top_block_odd(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
         self.uhd_usrp_source_0_3 = uhd.usrp_source(
-        	"ip_addr=192.168.10.5",
+        	",".join(("ip_addr=192.168.10.5", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
@@ -83,7 +83,7 @@ class top_block_odd(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_0_3.set_gain(gain, 0)
         self.uhd_usrp_source_0_3.set_antenna("TX/RX", 0)
         self.uhd_usrp_source_0_1 = uhd.usrp_source(
-        	"ip_addr=192.168.10.3",
+        	",".join(("ip_addr=192.168.10.3", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
@@ -170,17 +170,6 @@ class top_block_odd(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-<<<<<<< HEAD
-        self.connect((self.max_receive_power_0, 0), (self.max_to_zmq_pub_1, 0))
-        self.connect((self.max_receive_power_0, 1), (self.max_to_zmq_pub_1, 1))
-        self.connect((self.max_receive_power_0_1, 0), (self.max_to_zmq_pub_1_1, 0))
-        self.connect((self.max_receive_power_0_1, 1), (self.max_to_zmq_pub_1_1, 1))
-        self.connect((self.max_receive_power_0_3, 0), (self.max_to_zmq_pub_1_3, 0))
-        self.connect((self.max_receive_power_0_3, 1), (self.max_to_zmq_pub_1_3, 1))
-        self.connect((self.uhd_usrp_source_0, 0), (self.max_receive_power_0, 0))
-        self.connect((self.uhd_usrp_source_0_1, 0), (self.max_receive_power_0_1, 0))
-        self.connect((self.uhd_usrp_source_0_3, 0), (self.max_receive_power_0_3, 0))
-=======
         self.connect((self.max_receive_power_0, 0), (self.max_to_zmq_pub_1, 0))    
         self.connect((self.max_receive_power_0, 1), (self.max_to_zmq_pub_1, 1))    
         self.connect((self.max_receive_power_0_1, 0), (self.max_to_zmq_pub_1_1, 0))    
@@ -191,7 +180,6 @@ class top_block_odd(gr.top_block, Qt.QWidget):
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_freq_sink_x_0, 0))    
         self.connect((self.uhd_usrp_source_0_1, 0), (self.max_receive_power_0_1, 0))    
         self.connect((self.uhd_usrp_source_0_3, 0), (self.max_receive_power_0_3, 0))    
->>>>>>> 8e08dda... Publish newest state of top_block_odd (used on cardinal).
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "top_block_odd")
@@ -204,13 +192,10 @@ class top_block_odd(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
+        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
+        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
         self.uhd_usrp_source_0_1.set_samp_rate(self.samp_rate)
         self.uhd_usrp_source_0_3.set_samp_rate(self.samp_rate)
-        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
-<<<<<<< HEAD
-=======
-        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
->>>>>>> 8e08dda... Publish newest state of top_block_odd (used on cardinal).
 
     def get_keep_one_in_n(self):
         return self.keep_one_in_n
@@ -226,18 +211,12 @@ class top_block_odd(gr.top_block, Qt.QWidget):
 
     def set_gain(self, gain):
         self.gain = gain
+        self.uhd_usrp_source_0.set_gain(self.gain, 0)
+        	
         self.uhd_usrp_source_0_1.set_gain(self.gain, 0)
-
+        	
         self.uhd_usrp_source_0_3.set_gain(self.gain, 0)
-<<<<<<< HEAD
-
-        self.uhd_usrp_source_0.set_gain(self.gain, 0)
-
-=======
         	
-        self.uhd_usrp_source_0.set_gain(self.gain, 0)
-        	
->>>>>>> 8e08dda... Publish newest state of top_block_odd (used on cardinal).
 
     def get_fftlen(self):
         return self.fftlen
@@ -253,9 +232,9 @@ class top_block_odd(gr.top_block, Qt.QWidget):
 
     def set_f0(self, f0):
         self.f0 = f0
+        self.uhd_usrp_source_0.set_center_freq(self.f0, 0)
         self.uhd_usrp_source_0_1.set_center_freq(self.f0, 0)
         self.uhd_usrp_source_0_3.set_center_freq(self.f0, 0)
-        self.uhd_usrp_source_0.set_center_freq(self.f0, 0)
 
 
 def main(top_block_cls=top_block_odd, options=None):
